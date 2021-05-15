@@ -9,16 +9,16 @@ body{
 	background: #6ab446;
 }
 
-.nav-link, .game_Name, .game_Detail_Link, nav h2{
+.nav-link, div a, nav h2{
 	color: #fff;
+}
+
+.nav-link, div a{
 	cursor: pointer;
 }
 
-.nav-link{
-	margin-right: 1em !important;
-}
 
-.nav-link:hover, .game_Detail_Link:hover{
+.nav-link:hover, div a:hover, .planner_links a:hover{
 	color: #000;
 }
 
@@ -26,7 +26,20 @@ body{
 	justify-content: flex-end;
 }
 
-iframe{
-	width: calc(100% + 1px);
-	height: 84%;
+
+/* Planning styling */
+
+
+.all_planner_information{
+	height: 50px;
+}
+
+
+.all_planner_information div{
+	margin: 10px 0px;
+}
+
+.all_planner_information div p, .all_planner_information div a{
+	color: white;
+	font-size: 20px;
 }
