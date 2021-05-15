@@ -19,24 +19,24 @@
 	    <div class="container-fluid">
             <?php foreach($appointment_information as $game_information){ ?>
                 <div class="row border border-dark bg-info all_planner_information">
-                    <div class="col">
+                    <div class="col-2">
        					<p><?= $game_information["game_name"] ?></p>
                     </div>      
-                    <div class="col">
-                        <p><?= $game_information["game_date"] ?></p>
+                    <div class="col-2">
+                        <p><?= ($game_information["game_date"]) ?></p>
                     </div> 
-                    <div class="col">
-                        <p><?= $game_information["game_time"] ?></p>
+                    <div class="col-2">
+                        <p><?= substr($game_information["game_time"], 0, -3) ?></p>
                     </div> 
-                    <div class="col">
+                    <div class="col-2">
                         <p><?= $game_information["host"] ?></p>
                     </div>    
-                    <div class="col">
+                    <div class="col-2">
                         <p><?= $game_information["players"] ?></p>
                     </div> 
-                    <div class="col planner_links">
-                        <a class="text-decoration-none mr-4" href="update_question.php?id=<?= $game_information["id"] ?>&info=update">Bewerk</a>
-                        <a class="text-decoration-none" href="update_question.php?id=<?= $game_information["id"] ?>&info=delete">Verwijder</a>
+                    <div class="col-2 planner_links">
+                        <a class="text-decoration-none mr-4" href="editer.php?id=<?= $game_information["id"] ?>&info=update">Bewerk</a>
+                        <a class="text-decoration-none" href="editer.php?id=<?= $game_information["id"] ?>&info=delete">Verwijder</a>
                     </div>                                                 
                 </div>
             <?php } ?>

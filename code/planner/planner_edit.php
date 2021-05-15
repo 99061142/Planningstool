@@ -11,8 +11,8 @@
         $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         // prepare sql and bind parameters
-        $stmt = $connection->prepare("INSERT INTO planning (game_name, game_date, game_time, host, players)
-        VALUES (:game_name, :game_date, :game_time, :host, :players)");
+        $stmt = $connection->prepare("UPDATE planning SET game_name = :game_name, game_date = :game_date, game_time = :game_time, host = :host, players = :players WHERE id = :game_id");
+        $stmt->bindParam(":game_id", $game_id);
         $stmt->bindParam(":game_name", $game_name);
         $stmt->bindParam(":game_date", $game_date);
         $stmt->bindParam(":game_time", $game_time);
@@ -28,22 +28,23 @@
         $players = $_POST["players"];
 
         // Update the values
-        $game_time = date("H:i");
-
         $one_game_Information = one_game_Information($game_id);
         $game_name = $one_game_Information["name"];
 
-        $stmt->execute(); ?>
-
+        $stmt->execute(); 
+        ?>
         <script>
             window.location.href = "../../pages/planning.php";
-            alert('Het toevoegen van de game "<?= $game_name ?>" is gelukt');            
+            alert('Het updaten van de planning is gelukt');            
         </script>
-    <?php }catch(PDOException $e){ ?>
-        <script>
-            window.location.href = "../../pages/appointment.php?id=<?= $game_id ?>";
-            alert('Het toevoegen van de game "<?= $game_name ?>" is NIET gelukt');
+        <?php
+    }catch(PDOException $e){ 
+       ?>
+       <script>
+            window.location.href = "../../pages/editer.php?id=<?= $game_id ?>&info=update";
+            alert('Het updaten van de planning is NIET gelukt'); 
         </script>
-    <?php }
+        <?php
+    }
     $connection = null; 
 ?>

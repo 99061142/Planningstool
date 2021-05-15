@@ -45,7 +45,18 @@
         $query->execute();
         $appointment_Information = $query->fetchAll();
         return $appointment_Information;
-    }   
+    }
+
+
+    function planning_editer($id){
+        $db_connection = game_db_conn();
+
+        $query = $db_connection->prepare("SELECT * FROM planning WHERE id = :id");
+        $query->bindParam(':id', $id);
+        $query->execute();
+        $planning_editer = $query->fetch();
+        return $planning_editer;
+    }      
 
 
 
@@ -68,8 +79,5 @@
         $query = $db_connection->prepare("DELETE FROM planning WHERE id= :id");
         $query->bindParam(':id', $id);
         $query->execute(); 
-    }
-
-  
-
+    }  
 ?>
