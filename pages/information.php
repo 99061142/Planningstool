@@ -1,5 +1,9 @@
 <?php
   include('../code/id_checker.php');
+  id_game_checker();
+
+  $id = $_GET["id"];
+  $one_game_Information = one_game_Information($id);
 ?>
 
 

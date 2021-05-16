@@ -1,8 +1,15 @@
 <?php
-	include("../code/functions.php");
+    include("../code/id_checker.php");
+    id_planning_checker();
+    info_checker();
+
+
 	$id = $_GET["id"];
 	$info = $_GET["info"];
 	$planning_editer = planning_editer($id);
+
+	$game_name = $planning_editer["game_name"];
+	$gameID = gameID_getter($game_name);
 ?>
 
 
@@ -42,7 +49,7 @@
         <?php if($info === "update"){ ?>
 			<h2 class="text-center">Als u iets wilt veranderen moet u de vakken veranderen,</h2>
 			<h4 class="text-center text-danger">U moet elke input invullen, ook al wilt u maar 1 ding veranderen</h4>
-        	<form method="post" action="../code/planner/planner_edit.php?id=<?=$id ?>">
+        	<form method="post" action="../code/planner/planner_edit.php?id=<?=$id ?>&gameID=<?=$gameID ?>">
         		<div class="container-fluid row mt-3">
 	        		<div class='col-1'>
 	        			<p style="height: 31px">Datum: </p>
@@ -59,7 +66,9 @@
 	        	</div>
 	        	<input type="submit">
         	</form>
-		<?php }else{ ?>
+			<?php 
+		}
+		else if($info === "delete"){ ?>
 			<h2 class="text-center">Weet u zeker dat u deze planning wilt verwijderen?</h2>
 			<form method="post" class="text-center mt-5">
 				<input class="px-5 py-2 mr-3" type="submit" name="delete" value="Ja"/>

@@ -3,6 +3,36 @@
     include("../functions.php");
     $connection = game_db_conn();
 
+    
+    // Timezone
+    date_default_timezone_set("Europe/Amsterdam");
+
+
+    // Values
+    $game_id = $_GET["id"];
+    $game_date = $_POST["game_date"];
+    $game_time = $_POST["game_time"];
+    $host = $_POST["host"];
+    $players = $_POST["players"];
+
+    $one_game_Information = one_game_Information($game_id);
+    $game_name = $one_game_Information["name"];
+
+
+    if($game_date == ""){
+       $game_date = date("Y-m-d"); 
+    }
+    if($game_time == ""){
+        $game_time = date("H:i:s");
+    }
+    if($host == ""){
+        $host = "Geen host nodig";
+    }
+    if($players == ""){
+        $players = "Schrijf jezelf in";
+    }
+
+
 
 
 
@@ -20,17 +50,6 @@
         $stmt->bindParam(":players", $players);
 
 
-        // Values
-        $game_id = $_GET["id"];
-        $game_date = $_POST["game_date"];
-        $game_time = $_POST["game_time"];
-        $host = $_POST["host"];
-        $players = $_POST["players"];
-
-        // Update the values
-        $one_game_Information = one_game_Information($game_id);
-        $game_name = $one_game_Information["name"];
-        
         $stmt->execute();
         ?><script>
             window.location.href = "../../pages/planning.php";
@@ -38,7 +57,7 @@
         </script><?php
     }catch(PDOException $e){ ?>
         <script>
-            window.location.href = "../../pages/appointment.php?id=<?= $game_id ?>";
+            window.location.href = "../../pages/appointment.php?id=<?= $game_name ?>";
             alert('Het toevoegen van de game "<?= $game_name ?>" is NIET gelukt');
         </script>
     <?php }

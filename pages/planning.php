@@ -20,10 +20,10 @@
             <?php foreach($appointment_information as $game_information){ ?>
                 <div class="row border border-dark bg-info all_planner_information">
                     <div class="col-2">
-       					<p><?= $game_information["game_name"] ?></p>
+       					<p><?=  $game_information["game_name"] ?></p>
                     </div>      
                     <div class="col-2">
-                        <p><?= ($game_information["game_date"]) ?></p>
+                        <p><?= $game_information["game_date"] ?></p>
                     </div> 
                     <div class="col-2">
                         <p><?= substr($game_information["game_time"], 0, -3) ?></p>
