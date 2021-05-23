@@ -27,19 +27,14 @@ body{
 }
 
 
+
+
 /* Planning styling */
 
-
-.all_planner_information{
-	height: 50px;
-}
-
-
-.all_planner_information div{
-	margin: 10px 0px;
-}
-
-.all_planner_information div p, .all_planner_information div a{
+.planning_Game_Information div p{
 	color: white;
-	font-size: 20px;
+}
+
+.planning_Game_Information div p, .planning_Game_Edit_Links{
+	margin: 5px 0px;
 }

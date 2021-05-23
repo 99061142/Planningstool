@@ -1,7 +1,12 @@
 <?php
-  include('../code/id_checker.php');
+  include("db/connection.php");
+  include("code/functions.php");
+  include('code/get_checker.php');
+
+  // Checks if the id and info is correct
   id_game_checker();
 
+  // Values
   $id = $_GET["id"];
   $one_game_Information = one_game_Information($id);
 ?>
@@ -14,17 +19,17 @@
   <head>
     <meta charset='UTF-8'>
     <title>Game - <?= $one_game_Information['name'] ?></title>
-    <?php include('../include/styling_links.php') ?>
+    <?php include('include/styling_links.php') ?>
   </head>
   <body>
 	  <nav class='navbar navbar-expand-md'>
 		  <h2 class='navbar-brand'><?= $one_game_Information['name'] ?></h2>
-		  <?php include '../include/navbar.php' ?>
+		  <?php include 'include/navbar.php' ?>
     </nav>
 	  <div class='container'>
 		  <div class='row'>
         <div style='width: 400px; height: 400px;' class='col-3 border border-secondary text-center'>
-          <img class='w-100 h-100' src='../afbeeldingen/<?= $one_game_Information['image'] ?>'>
+          <img class='w-100 h-100' src='afbeeldingen/<?= $one_game_Information['image'] ?>'>
         </div>
         <div class='col-9 border border-secondary text-center'>
           <h3>Omschrijving</h3>
@@ -57,7 +62,7 @@
 					  <p>Speeltijd: <?= $one_game_Information['play_minutes'] ?> minuten</p>
 					  <p>Tijd voor de uitleg: <?= $one_game_Information['explain_minutes'] ?> minuten</p>
             <h4 class='my-2'>Plan het spel in</h4>
-            <button onclick="location.href='appointment.php?id=<?= $one_game_Information['id'] ?>'">INPLANNEN</button>
+            <button onclick="location.href='adding_Planning.php?id=<?= $one_game_Information['id'] ?>'">INPLANNEN</button>
           </div>
         </div>
       </div>
