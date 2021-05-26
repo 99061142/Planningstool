@@ -9,6 +9,31 @@
     $planning_count = 0;
 
 
+    // Values
+    $info = $_GET["info"];
+
+
+    // Give feedback what the user did with the planning
+    if($info == "deleted"){
+        echo "U heeft de game verwijderd";
+    }
+    else if($info == "deletedError"){
+        echo "U heeft de game niet verwijderd";
+    }
+    else if($info == "added"){
+        echo "U heeft de game toegevoegd";
+    }
+    else if($info == "addedError"){
+        echo "U heeft de game niet toegevoegd";
+    }
+    else if($info == "updated"){
+        echo "U heeft de game geupdate";
+    }
+    else if($info == "updatedError"){
+        echo "U heeft de game niet geupdate";
+    }
+
+
     // Add all the gaming names to the array, then add them in the planning shower
     foreach($appointment_information as $game_information){
         // Values
@@ -21,11 +46,11 @@
 
 
         // Total play time of the games
-        $playTime = $one_game_Information['play_minutes'] + $one_game_Information['explain_minutes'];
+        $playTime = $one_game_Information["play_minutes"] + $one_game_Information["explain_minutes"];
 
         $startTime = substr($game_information["game_time"], 0, -3);
         $endTime = date("H:i", strtotime("$startTime + $playTime minute"));    
-        $totalTime = $startTime . "-" . $endTime;
+        $totalTime = "$startTime-$endTime";
         $game_Playtime_Array[] = $totalTime;
     }
 ?>

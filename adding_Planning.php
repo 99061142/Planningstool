@@ -4,8 +4,20 @@
   include("code/get_checker.php");
   id_game_checker();
 
+
+  // Values
   $id = $_GET["id"];
+  $info = $_GET["info"];
+
+
+  // Variables
   $one_game_Information = one_game_Information($id);
+
+
+  // Give feedback what the user did with the planning
+  if($info == "addedError"){
+    echo "U heeft de game niet toegevoegd";
+  }
 ?>
 
 

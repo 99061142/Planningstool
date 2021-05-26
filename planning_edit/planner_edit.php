@@ -32,6 +32,8 @@
         $_POST[$i] = $question;
     }
 
+    var_dump($_POST);
+
 
     try {
         $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -53,19 +55,9 @@
 
 
         $stmt->execute(); 
-        ?>
-        <script>
-            window.location.href = "../planning.php";
-            alert('Het updaten van de planning is gelukt');            
-        </script>
-        <?php
+        header("location: ../planning.php?info=updated");         
     }catch(PDOException $e){ 
-       ?>
-       <script>
-            window.location.href = "../editingPage.php?id=<?= $planning_id ?>&info=update";
-            alert('Het updaten van de planning is NIET gelukt'); 
-        </script>
-        <?php
+        header("location: ../planning.php?info=updatedError"); 
     }
     $connection = null;   
 ?>

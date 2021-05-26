@@ -24,7 +24,7 @@
         $_POST[$i] = $question;
     }
 
-
+    
     try {
         $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -41,19 +41,9 @@
 
 
         $stmt->execute();
-        ?>
-        <script>
-            window.location.href = "../planning.php";
-            alert('Het toevoegen van de game is gelukt');            
-        </script>
-        <?php
+        header("location: ../planning.php?info=added");
     }catch(PDOException $e){ 
-        ?>
-        <script>
-            window.location.href = "../adding_Planning.php?id=<?= $game_id ?>";
-            alert('Het toevoegen van de game is NIET gelukt');
-        </script>
-        <?php 
+        header("location: ../adding_Planning.php?id=$game_id&info=addedError");
     }
     $connection = null; 
 ?>

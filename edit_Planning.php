@@ -20,7 +20,7 @@
 
 
 	// Calculate The start, and end time of the game
-    $playTime = $one_game_Information['play_minutes'] + $one_game_Information['explain_minutes'];
+    $playTime = $one_game_Information["play_minutes"] + $one_game_Information["explain_minutes"];
 
 
     $startTime = substr($one_Planning_Information["game_time"], 0, -3);
@@ -32,21 +32,11 @@
 
 	// If the user said they want to delete the planning
 	if(isset($_POST["delete"])){ 
-		delete_planner($id); ?>
-		<script>
-	        window.location.href = "planning.php";
-	        alert("Het verwijderen is gelukt");
-	    </script>
-	    <?php
+		delete_planner($id); 
+		header("location: planning.php?info=deleted");
 	}
-
-	// If the user said they don't want to delete the planning
-	else if(isset($_POST["back"])) { ?>
-		<script>
-	        window.location.href = "planning.php";
-	        alert("Je hebt de planning niet verwijderd");
-	    </script>
-	    <?php
+	if(isset($_POST["back"])){ 
+	    header("location: planning.php?info=deletedError");
 	}
 ?>
 
@@ -85,7 +75,7 @@
 
         <?php if($info == "update"){ ?>
 			<h2 class="text-center">Vul een vak in die u wilt veranderen</h2>
-        	<form class="container-fluid mt-3" method="post" action="planning_edit/planner_edit.php?id=<?=$id ?>">
+        	<form class="container-fluid mt-3" method="post" action="planning_edit/planner_edit.php?id=<?= $id ?>">
 	          	Datum: <br><input class="mb-4 mt-2" type="date" name="question1"><br>
 	          	Tijd: <br><input class="mb-4 mt-2" type="time" name="question2"><br>
 	          	Host: <br><input class="mb-4 mt-2" type="varchar" name="question3"><br>
