@@ -1,37 +1,13 @@
 <?php
     include("db/connection.php");
 	include("code/functions.php");
+    include("code/popup_Information.php");
 	$appointment_Amount = appointment_Amount();
 	$appointment_information = appointment_Information();
 
 
     // Variables
     $planning_count = 0;
-
-
-    // Values
-    $info = $_GET["info"];
-
-
-    // Give feedback what the user did with the planning
-    if($info == "deleted"){
-        echo "U heeft de game verwijderd";
-    }
-    else if($info == "deletedError"){
-        echo "U heeft de game niet verwijderd";
-    }
-    else if($info == "added"){
-        echo "U heeft de game toegevoegd";
-    }
-    else if($info == "addedError"){
-        echo "U heeft de game niet toegevoegd";
-    }
-    else if($info == "updated"){
-        echo "U heeft de game geupdate";
-    }
-    else if($info == "updatedError"){
-        echo "U heeft de game niet geupdate";
-    }
 
 
     // Add all the gaming names to the array, then add them in the planning shower
